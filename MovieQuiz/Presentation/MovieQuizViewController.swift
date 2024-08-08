@@ -73,7 +73,7 @@ final class MovieQuizViewController: UIViewController {
         showCurrentQuestion()
     }
     
-    @IBAction func noButtonClicked(_ sender: UIButton) {
+    @IBAction private func noButtonClicked(_ sender: UIButton) {
         let currentQuestion = questions[currentQuestionIndex]
         let givenAnswer = false
         showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
@@ -95,6 +95,7 @@ final class MovieQuizViewController: UIViewController {
         imageView.image = step.image
         textLabel.text = step.question
         counterLabel.text = step.questionNumber
+        imageView.layer.borderColor = UIColor.clear.cgColor
     }
     private func showCurrentQuestion() {
         let currentQuestion = questions[currentQuestionIndex]
@@ -137,7 +138,7 @@ final class MovieQuizViewController: UIViewController {
         let action = UIAlertAction(title: result.buttonText, style: .default) { _ in
             self.currentQuestionIndex = 0
             self.correctAnswers = 0
-            
+            self.imageView.layer.borderColor = UIColor.clear.cgColor
         let firstQuestion = self.questions[self.currentQuestionIndex]
         let viewModel = self.convert(model: firstQuestion)
             self.show(quiz: viewModel)
